@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Task1 {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        Random random = new Random();
+
+        int secretNumber = random.nextInt(100) + 1; 
+        int attemptsLeft = 7;
+        int guess;
+        boolean isGuessed = false;
+
+        System.out.println("  Welcome to Mystery Number Game ");
+        System.out.println("I have selected a number between 1 and 100.");
+        System.out.println("You have " + attemptsLeft + " chances to guess it!");
+
+        while (attemptsLeft > 0) {
+
+            System.out.print("\nEnter your guess: ");
+            guess = input.nextInt();
+
+            if (guess == secretNumber) {
+                isGuessed = true;
+                break;
+            } 
+            else if (guess < secretNumber) {
+                System.out.println("Too low! Try a bigger number.");
+            } 
+            else {
+                System.out.println("Too high! Try a smaller number.");
+            }
+
+            attemptsLeft--;
+            System.out.println("Attempts remaining: " + attemptsLeft);
+        }
+
+        System.out.println("\n========== Result ==========");
+
+        if (isGuessed) {
+            int score = attemptsLeft * 10;
+            System.out.println("Congratulations! You guessed the number.");
+            System.out.println("Your Score: " + score);
+        } else {
+            System.out.println(" Game Over! You've used all attempts.");
+            System.out.println("The correct number was: " + secretNumber);
+        }
+
+        input.close();
+    }
+}
