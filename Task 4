@@ -1,0 +1,46 @@
+import java.util.Scanner;
+public class Task4 {
+
+public static double getRate(String from, String to) {
+
+        if (from.equals("INR") && to.equals("USD")) return 0.012;
+        if (from.equals("USD") && to.equals("INR")) return 83;
+
+        if (from.equals("INR") && to.equals("EUR")) return 0.011;
+        if (from.equals("EUR") && to.equals("INR")) return 90;
+
+        if (from.equals("USD") && to.equals("EUR")) return 0.92;
+        if (from.equals("EUR") && to.equals("USD")) return 1.08;
+
+        return -1; // invalid pair
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("====== CURRENCY CONVERTER ======");
+
+        System.out.println("Available currencies: INR, USD, EUR");
+
+        System.out.print("Enter base currency: ");
+        String from = sc.next().toUpperCase();
+
+        System.out.print("Enter target currency: ");
+        String to = sc.next().toUpperCase();
+
+        System.out.print("Enter amount: ");
+        double amount = sc.nextDouble();
+
+        double rate = getRate(from, to);
+
+        if (rate == -1) {
+            System.out.println("Invalid currency selection!");
+        } else {
+            double result = amount * rate;
+            System.out.println("Converted Amount: " + result + " " + to);
+        }
+
+        sc.close();
+    }
+}
