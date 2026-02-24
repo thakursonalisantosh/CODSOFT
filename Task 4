@@ -1,0 +1,85 @@
+import java.util.Scanner;
+class BankAccount {
+
+    private double balance;
+
+    BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+        public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Money Deposited Successfully!");
+    }
+
+        public void withdraw(double amount) {
+        if (amount > balance) {
+            System.out.println("Insufficient Balance!");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawal Successful!");
+        }
+    }
+
+       public double getBalance() {
+        return balance;
+    }
+}
+
+
+public class Task3 {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        BankAccount account = new BankAccount(1000); 
+        int choice;
+
+        do {
+            System.out.println("\n====== ATM MENU ======");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit Money");
+            System.out.println("3. Withdraw Money");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.println("Current Balance: " + account.getBalance());
+                    break;
+
+                case 2:
+                    System.out.print("Enter deposit amount: ");
+                    double dep = sc.nextDouble();
+                    if (dep > 0)
+                        account.deposit(dep);
+                    else
+                        System.out.println("Invalid amount!");
+                    break;
+
+                case 3:
+                    System.out.print("Enter withdrawal amount: ");
+                    double with = sc.nextDouble();
+                    if (with > 0)
+                        account.withdraw(with);
+                    else
+                        System.out.println("Invalid amount!");
+                    break;
+
+                case 4:
+                    System.out.println("Thank you for using ATM!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
